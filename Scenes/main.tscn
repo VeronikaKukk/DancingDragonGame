@@ -1,0 +1,97 @@
+[gd_scene load_steps=22 format=3 uid="uid://8u1aillhugc1"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_l8tsp"]
+[ext_resource type="PackedScene" uid="uid://cakorqx88w5ul" path="res://Scenes/timer.tscn" id="1_sqh7m"]
+[ext_resource type="PackedScene" uid="uid://dkxswwo3v2ufy" path="res://Scenes/player_piece.tscn" id="2_0nd1q"]
+[ext_resource type="Texture2D" uid="uid://bon2kvty1sgi1" path="res://Graphics/Untitled design.png" id="2_7b44m"]
+[ext_resource type="Texture2D" uid="uid://cuq7p4v4katie" path="res://Graphics/left_head.PNG" id="4_xk2sl"]
+[ext_resource type="Texture2D" uid="uid://rmjpo68l3ky6" path="res://Graphics/middleleft_head.PNG" id="5_2vwf7"]
+[ext_resource type="Texture2D" uid="uid://cx61okh5qexi6" path="res://Graphics/middleright_head.PNG" id="6_nagtk"]
+[ext_resource type="Texture2D" uid="uid://cb276q03ygkib" path="res://Graphics/right_head.PNG" id="7_55tu1"]
+[ext_resource type="Texture2D" uid="uid://cuuihnc4rav1b" path="res://Graphics/left_body.PNG" id="8_a1qdg"]
+[ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="8_ggnsq"]
+[ext_resource type="PackedScene" uid="uid://bc3hlk634b6us" path="res://Scenes/hearts_container.tscn" id="8_qeflm"]
+[ext_resource type="Texture2D" uid="uid://cg7piylf2qq46" path="res://Graphics/middleleft_body.PNG" id="9_df0fj"]
+[ext_resource type="AudioStream" uid="uid://mqitwoecmrn0" path="res://Sounds/512929__lindseysewell__cottagecore.wav" id="9_mmhiu"]
+[ext_resource type="Texture2D" uid="uid://ds57uj4bqly1x" path="res://Graphics/middleright_body.PNG" id="10_fojby"]
+[ext_resource type="FontFile" uid="uid://ccf0q7o7216te" path="res://GochiHand-Regular.ttf" id="10_n40yu"]
+[ext_resource type="Texture2D" uid="uid://b5pwfv2xkuv10" path="res://Graphics/right_body.PNG" id="11_crv7y"]
+[ext_resource type="Texture2D" uid="uid://c8ioncb1jx4pq" path="res://Graphics/left_legs.PNG" id="12_es73k"]
+[ext_resource type="Texture2D" uid="uid://dp7viuri68u2a" path="res://Graphics/middleleft_legs.PNG" id="13_lckns"]
+[ext_resource type="Texture2D" uid="uid://ciyh4yflcpb4b" path="res://Graphics/middleright_legs.PNG" id="14_woq7r"]
+[ext_resource type="Texture2D" uid="uid://i6vehk3a4kdt" path="res://Graphics/right_legs.PNG" id="15_xbrki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb6ev"]
+bg_color = Color(0.239216, 0.00784314, 0, 0.780392)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_l8tsp")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="background1" type="Sprite2D" parent="Background"]
+position = Vector2(262.6, 343.8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_7b44m")
+
+[node name="background2" type="Sprite2D" parent="Background"]
+position = Vector2(948.6, 343.8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_7b44m")
+
+[node name="Panel" type="Panel" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wb6ev")
+
+[node name="timernode" parent="." instance=ExtResource("1_sqh7m")]
+
+[node name="Piece" parent="." instance=ExtResource("2_0nd1q")]
+position = Vector2(627, 198)
+reaction_time = 3.0
+texture_choices = Array[Texture]([ExtResource("4_xk2sl"), ExtResource("5_2vwf7"), ExtResource("6_nagtk"), ExtResource("7_55tu1")])
+
+[node name="Piece2" parent="." instance=ExtResource("2_0nd1q")]
+position = Vector2(627, 373)
+button_choices = [65, 83, 68, 70]
+reaction_time = 3.0
+texture_choices = Array[Texture]([ExtResource("8_a1qdg"), ExtResource("9_df0fj"), ExtResource("10_fojby"), ExtResource("11_crv7y")])
+
+[node name="Piece3" parent="." instance=ExtResource("2_0nd1q")]
+position = Vector2(627, 535)
+button_choices = [90, 88, 67, 86]
+reaction_time = 3.0
+texture_choices = Array[Texture]([ExtResource("12_es73k"), ExtResource("13_lckns"), ExtResource("14_woq7r"), ExtResource("15_xbrki")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("8_ggnsq")
+
+[node name="hearts_container" parent="CanvasLayer" instance=ExtResource("8_qeflm")]
+offset_left = 19.0
+offset_top = 27.0
+offset_right = 19.0
+offset_bottom = 27.0
+
+[node name="success_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -169.0
+offset_top = 56.0
+offset_right = -75.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("10_n40yu")
+theme_override_font_sizes/font_size = 40
+text = "Success:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_mmhiu")
+bus = &"music"

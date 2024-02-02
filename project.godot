@@ -1,0 +1,25 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Godotprojekt"
+run/main_scene="res://Scenes/menu.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://Graphics/icon.svg"
+
+[autoload]
+
+Globals="*res://Scripts/globals.gd"
+ButtonClick="*res://Scenes/button_click.tscn"
+
+[display]
+
+window/size/resizable=false

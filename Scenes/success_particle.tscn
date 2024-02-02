@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://btsd88y55d23w"]
+
+[ext_resource type="Texture2D" uid="uid://dcweqtnkiin" path="res://Graphics/stars.png" id="1_osakq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ly7l8"]
+lifetime_randomness = 0.35
+emission_shape = 1
+emission_sphere_radius = 3.0
+particle_flag_disable_z = true
+spread = 107.45
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -200.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 100.5
+scale_min = 0.2
+scale_max = 0.6
+color = Color(1, 0.870588, 0.258824, 1)
+
+[node name="SuccessParticle" type="GPUParticles2D"]
+scale = Vector2(0.488301, 0.600001)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ly7l8")
+texture = ExtResource("1_osakq")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.5
+randomness = 0.05

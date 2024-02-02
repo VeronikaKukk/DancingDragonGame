@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://de45g58jcxvjh"]
+
+[ext_resource type="AudioStream" uid="uid://b2e5bugd11guj" path="res://Sounds/drop_003.ogg" id="1_44svm"]
+
+[node name="ButtonClick" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_44svm")
+bus = &"soundeffects"

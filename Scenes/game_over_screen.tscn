@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://du8cseoc0i768"]
+
+[ext_resource type="FontFile" uid="uid://ccf0q7o7216te" path="res://GochiHand-Regular.ttf" id="1_fwau8"]
+[ext_resource type="Script" path="res://Scenes/game_over_screen.gd" id="1_rkom0"]
+[ext_resource type="Texture2D" uid="uid://c3yeympi3t568" path="res://Graphics/mainmenubg.JPEG" id="2_u6jd6"]
+[ext_resource type="AudioStream" uid="uid://c0ctemgwqn48s" path="res://Sounds/180239__iluppai__chinese-flute-hulusi.wav" id="3_eo7no"]
+[ext_resource type="AudioStream" uid="uid://ctub3i1uhe5e0" path="res://Sounds/588234__mehraniiii__win.wav" id="4_c15kp"]
+[ext_resource type="AudioStream" uid="uid://dplanm1bohx5v" path="res://Sounds/364929__jofae__game-die.mp3" id="5_8y863"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2bkh"]
+bg_color = Color(0, 0, 0, 0.392157)
+
+[node name="game_over_screen" type="CanvasLayer"]
+script = ExtResource("1_rkom0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u6jd6")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2bkh")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 100
+text = "Game over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="modelabel" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="healthlabel" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 35
+text = "Lanterns remaining: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 40
+text = " Restart "
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 40
+text = " Main menu "
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fwau8")
+theme_override_font_sizes/font_size = 40
+text = " Quit "
+
+[node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_eo7no")
+bus = &"music"
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_c15kp")
+bus = &"soundeffects"
+
+[node name="LoseSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8y863")
+bus = &"soundeffects"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

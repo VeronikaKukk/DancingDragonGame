@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkxswwo3v2ufy"]
+
+[ext_resource type="Script" path="res://player_piece.gd" id="1_bik71"]
+[ext_resource type="Texture2D" uid="uid://rmjpo68l3ky6" path="res://Graphics/middleleft_head.PNG" id="2_ssge2"]
+[ext_resource type="AudioStream" uid="uid://b2yuytgv7wgmo" path="res://Sounds/615100__mlaudio__magic_game_win_success_2.wav" id="4_47p86"]
+[ext_resource type="AudioStream" uid="uid://dxf3asnihw23i" path="res://Sounds/519425__abdrtar__minus.mp3" id="5_ss55q"]
+
+[node name="Piece" type="Node2D"]
+script = ExtResource("1_bik71")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ssge2")
+region_rect = Rect2(565.135, 587.827, 972.16, 1575.96)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -401.0
+offset_top = -11.0
+offset_right = -361.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 30
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_47p86")
+bus = &"soundeffects"
+
+[node name="FailSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ss55q")
+volume_db = 15.864
+bus = &"soundeffects"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

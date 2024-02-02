@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctvkt82bet2aj"]
+
+[ext_resource type="Texture2D" uid="uid://0gyne74tjd2d" path="res://Graphics/latern.png" id="1_u0yf4"]
+
+[node name="heart_GUI" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 80)
+offset_right = 50.0
+offset_bottom = 80.0
+scale = Vector2(0.986849, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0527178, 0.0527178)
+texture = ExtResource("1_u0yf4")
+centered = false
+region_rect = Rect2(12.6224, 10.9236, 998.743, 1598.75)

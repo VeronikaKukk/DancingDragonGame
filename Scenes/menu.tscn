@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg6mihhjd85s2"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_gg38x"]
+[ext_resource type="FontFile" uid="uid://ccf0q7o7216te" path="res://GochiHand-Regular.ttf" id="1_j2lys"]
+[ext_resource type="Texture2D" uid="uid://c3yeympi3t568" path="res://Graphics/mainmenubg.JPEG" id="2_6rtxh"]
+[ext_resource type="AudioStream" uid="uid://c0ctemgwqn48s" path="res://Sounds/180239__iluppai__chinese-flute-hulusi.wav" id="3_kab6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu234"]
+bg_color = Color(0, 0, 0, 0.486275)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gg38x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6rtxh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eu234")
+
+[node name="Label" type="Label" parent="Panel"]
+modulate = Color(0.964706, 0.878431, 0.380392, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -227.0
+offset_right = 300.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 90
+text = "Dancing Dragon"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -73.0
+offset_right = 155.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="InstructionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = "Instructions"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = "Options"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 30
+text = "Choose Difficulty"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NormalStartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0, 0.505882, 0.317647, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = " Normal "
+
+[node name="HardStartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.964706, 0.878431, 0.380392, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = " Hard "
+
+[node name="ExpertStartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.819608, 0.0745098, 0.0823529, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = " Expert "
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j2lys")
+theme_override_font_sizes/font_size = 35
+text = "Quit"
+
+[node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kab6w")
+bus = &"music"
+
+[connection signal="pressed" from="VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NormalStartButton" to="." method="_on_normal_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HardStartButton" to="." method="_on_hard_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExpertStartButton" to="." method="_on_expert_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

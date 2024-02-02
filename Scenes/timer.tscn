@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cakorqx88w5ul"]
+
+[ext_resource type="Script" path="res://gametimer.gd" id="1_sjwnq"]
+
+[node name="timernode" type="Node2D"]
+script = ExtResource("1_sjwnq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
